@@ -1,4 +1,5 @@
 var User = require('./user.model.js');
+var Company = require('../company/company.model.js');
 var passport = require('passport');
 var Verify = require('../../server/verify.js');
 var log = require('tracer').console({format: "{{message}}  - {{file}}:{{line}}"}).log;
@@ -27,6 +28,18 @@ exports.register = function (req, res) {
       }
       if (req.body.lastname) {
         user.lastname = req.body.lastname;
+      }
+      if(req.body.company) {
+        var Company = new Company({
+          name: req.body.company
+        });
+        user.company = Company._id;
+      }
+      // if(req.body.admin){
+      //   user.admin = req.body.admin
+      // }
+      if(req.body.role){
+        user.role = req.body.role
       }
       user.save(function (err, user) {
         passport.authenticate('local')(req, res, function () {

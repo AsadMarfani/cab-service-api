@@ -16,15 +16,27 @@ var User = new Schema({
     type: String,
     default: ''
   },
-  admin: {
-    type: Boolean,
-    default: false
+  // admin: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  role: {
+    type: Number, // 0 -> normal user, 1 -> driver, 2 -> admin, 3 -> owner
+    default: 0
+  },
+  status: {
+    type: Number, // 0 -> free state , 1 -> busy state
+    default: 0
   },
   resetToken: {
     type: String,
     default: ''
+  },
+  company : {
+    type: mongoose.Types.ObjectId,
+    ref: 'Company'
   }
-});
+}, {timestamps: true});
 
 User.methods.getName = function () {
   return (this.firstname + ' ' + this.lastname);

@@ -89,7 +89,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 
-  art.font('sudofy    api    server', 'Doom', function(rendered){
+  art.font('CabService    API    SERVER', 'Doom', function(rendered){
     console.log(rendered);
   });
 

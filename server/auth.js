@@ -19,10 +19,10 @@ exports.getLoginData = function (user, expiry) {
   delete userData.hash;
   delete userData.salt;
   delete userData.resetToken;
-  delete userData.admin;
+  // delete userData.admin;
 
   var deferred = Q.defer();
-  Iron.seal(userData, config.sealPass, Iron.defaults, function (err, sealed) {
+  Iron.seal(userData, config.sealPass, Iron.defaults /*AES 256 */, function (err, sealed) {
     if (err) {
       deferred.reject(err);
     }
